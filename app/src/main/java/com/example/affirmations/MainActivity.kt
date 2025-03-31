@@ -34,12 +34,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.affirmations.data.Datasource
-import com.example.affirmations.model.Affirmation
+import com.example.affirmations.model.Affiramtion
 import com.example.affirmations.ui.theme.AffirmationsTheme
 
 class MainActivity : ComponentActivity() {
@@ -62,37 +63,37 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun AffirmationsApp() {
-    AffirmationList(
-        affirmationList = Datasource().loadAffirmations(),
-    )
+    val layoutDirection = LocalLayoutDirection.current
+    Surface () {  }
 }
 
-/*@Composable
-fun AffirmationList(affirmationList: List<Affirmation>, modifier: Modifier = Modifier) {
+@Composable
+fun AffirmationList(affiramtionList: List<Affiramtion>, modifier: Modifier = Modifier){
     LazyColumn(modifier = modifier) {
-        items(affirmationList) { affirmation ->
+        items(affiramtionList){ affiramtion ->
             AffirmationCard(
-                affirmation = affirmation,
+                affiramtion = affiramtion,
                 modifier = Modifier.padding(8.dp)
             )
+
         }
     }
 }
 
 @Composable
-fun AffirmationCard(affirmation: Affirmation, modifier: Modifier = Modifier) {
+fun AffirmationCard(affiramtion: Affiramtion, modifier: Modifier = Modifier) {
     Card(modifier = modifier) {
         Column {
             Image(
-                painter = painterResource(affirmation.imageResourceId),
-                contentDescription = stringResource(affirmation.stringResourceId),
+                painter = painterResource(affiramtion.imageResourceId),
+                contentDescription = stringResource(affiramtion.stringResourceId),
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(194.dp),
-                contentScale = ContentScale.Crop
+                contentScale = ContentScale.Crop,
             )
             Text(
-                text = LocalContext.current.getString(affirmation.stringResourceId),
+                text = LocalContext.current.getString(affiramtion.stringResourceId),
                 modifier = Modifier.padding(16.dp),
                 style = MaterialTheme.typography.headlineSmall
             )
@@ -100,9 +101,9 @@ fun AffirmationCard(affirmation: Affirmation, modifier: Modifier = Modifier) {
     }
 }
 
+
 @Preview
 @Composable
 private fun AffirmationCardPreview() {
-    AffirmationCard(Affirmation(R.string.affirmation1, R.drawable.image1))
+    AffirmationCard(Affiramtion(R.string.affirmation1, R.drawable.image1))
 }
-*/
